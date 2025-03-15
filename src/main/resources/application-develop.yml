@@ -1,0 +1,25 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /v1.0
+spring:
+  config:
+    activate:
+      on-profile: develop
+  jackson:
+    visibility:
+      field: ANY
+      getter: PUBLIC_ONLY
+      setter: PUBLIC_ONLY
+  r2dbc:
+    #url: r2dbc:h2:mem:///testdb;DB_CLOSE_DELAY=-1
+    url: r2dbc:h2:file:///./data/testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
+    pool:
+      max-create-connection-time: 5s
+      max-idle-time: 10m
+      max-life-time: 30m
+      max-acquire-time: 5s
+      initial-size: 10
+      max-size: 20
