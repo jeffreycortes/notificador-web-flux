@@ -45,14 +45,9 @@ public class ProductosController {
         return persistenciaService.crearProducto(producto);
     }
 
-    @PostMapping(value="/v2")
-    public Mono<ProductoDto> crearProductoV2(@RequestBody ProductoDto producto) {
-        return Mono.just(producto);
-    }
-
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Mono<Producto> actualizarProducto(@PathVariable("id") Integer id, @RequestBody Producto producto) {
-        //producto.setId(id);
+    public Mono<Producto> actualizarProducto(@PathVariable("id") Long id, @RequestBody Producto producto) {
+        producto.setId(id);
         return persistenciaService.actualizarProducto(producto)
                 .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND, "Producto no encontrado")));
     }

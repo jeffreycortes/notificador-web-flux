@@ -11,7 +11,7 @@ import org.springframework.data.relational.core.mapping.Table;
 @Table("producto")
 public class Producto {
     @Id
-    private Integer id;
+    private Long id;
     @NotBlank(message = "EL nombre es obligatorio")
     private String nombre;
     private String descripcion;
@@ -19,4 +19,8 @@ public class Producto {
     @NotNull(message = "El precio no puede ser nulo")
     @Min(value = 0, message = "El precio debe ser mayor o igual a 0")
     private double precio;
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
